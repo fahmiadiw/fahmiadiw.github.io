@@ -578,7 +578,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
           <li><b>Requirements before code.</b> Agreed default list criteria with marketing stakeholders before automating anything.</li>
           <li><b>Process redesign.</b> Turned a two-hour manual request into a one-step workflow, and a noisy job hunt into a human-in-the-loop pipeline.</li>
           <li><b>Decision support.</b> Built the dashboards hospital leadership used to track financial trends and clinical KPIs.</li>
-          <li><b>In progress.</b> A full BA case study for a family homestay: stakeholder map, process maps, BRD and user stories.</li>
+          <li><b>A full BA case study.</b> Took my family's homestay through all 11 stages, from problem statement to traceability matrix. <a href="nirina-ba-case-study.pdf" target="_blank" rel="noopener">Read it (PDF)</a>.</li>
         </ul>
       </details>
 
@@ -691,11 +691,12 @@ const PROJECTS = [
     problem:'Job boards are noisy; tailoring every application by hand is slow.',
     did:'Designed an AI-assisted job pipeline: daily search of company career pages → fit scoring → one-click tailored CV, cover letter and email → human review before anything is sent.',
     big:'Broken process → human-in-the-loop workflow', bigTxt:true, sub:'nothing goes out without a human check', tools:['AI agents','Workflow design','Process redesign'] },
-  { n:'05', pos:[56,68], soon:true, short:'Nirina Homestay', title:'Nirina Homestay BA case study', line:'A full BA case study on a real family business', org:'BA case study', yrs:'In progress', coord:'Survey in progress', tags:['STILL SURVEYING','BA CASE STUDY'],
-    labels:['THE SITE','BEING DRAWN UP','STATUS'],
-    problem:'A real family homestay, treated like a real client.',
-    did:'A full BA case study: stakeholder map, process maps, BRD and user stories.',
-    big:'Coming soon', bigTxt:true, sub:'still surveying', tools:['Stakeholder mapping','Process maps','BRD','User stories'] },
+  { n:'05', pos:[56,68], short:'Nirina BA case', title:'Nirina Homestay BA case study', line:'Why our OTA statement kept coming back negative', org:'BA case study · Nirina Homestay', yrs:'2026', coord:'5.36°S, 104.97°E', tags:['BA CASE STUDY','PROCESS REDESIGN'],
+    labels:['THE SITE','WHAT I DID','WHAT I FOUND'],
+    problem:'My family\'s 18 room homestay, treated like a real client. App guests who pay at the hotel hand us the full price, but 20% belongs to the platform, and our books never showed it. The monthly platform statement kept coming back negative.',
+    did:'Ran a full 11 stage BA cycle: stakeholder map and RACI, as-is and to-be process maps, gap analysis, BRD (16 functional and 7 non functional requirements), 11 user stories with acceptance criteria, data model, 21 SIT and 8 UAT cases, risk register, business case, and a traceability matrix that caught 3 gaps before go live.',
+    big:'The 20% lived in one person\'s head', bigTxt:true, sub:'Key person risk became the top priority. The analysis also showed our negotiated bottom rate leaves Rp 13.000 a night below the owner\'s target. The booking source fix is live; the system changes are designed.', tools:['Stakeholder mapping','RACI','Process maps','Gap analysis','MoSCoW','BRD','User stories','SIT & UAT','Traceability'],
+    link:['nirina-ba-case-study.pdf','Read the full case study (PDF) →'] },
   { n:'06', pos:[84,80], short:'Health Access WebGIS', title:'Pringsewu Health Access WebGIS', line:'Who can actually reach a health facility?', org:'WebGIS project · Pringsewu', yrs:'2026', coord:'5.36°S, 104.97°E', tags:['WEBGIS','PUBLIC HEALTH'],
     labels:['THE QUESTION','WHAT I DID','WHAT THE MAP SHOWS'],
     problem:'How well do health facilities, from clinics and puskesmas up to hospitals, reach the 131 villages of Pringsewu, and where would a new referral facility help most?',
