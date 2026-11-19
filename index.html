@@ -509,7 +509,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <ul>
         <li>Geomatics engineer by training. Started in the field in 2017 as a GIS Field Analyst on PALAR land registration with Meridia &amp; BPN.</li>
         <li>Built GIS dashboards of healthcare facility distribution, population density and disease patterns for public-health teams in West Nusa Tenggara.</li>
-        <li>Stack: ArcGIS · QGIS · PostGIS. Next: a public WebGIS of health access in Pringsewu.</li>
+        <li>Stack: ArcGIS · QGIS · PostGIS · Python. Latest: a <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">public WebGIS of health access in Pringsewu</a>.</li>
       </ul>
     </details>
   </div>
@@ -696,11 +696,12 @@ const PROJECTS = [
     problem:'A real family homestay, treated like a real client.',
     did:'A full BA case study: stakeholder map, process maps, BRD and user stories.',
     big:'Coming soon', bigTxt:true, sub:'still surveying', tools:['Stakeholder mapping','Process maps','BRD','User stories'] },
-  { n:'06', pos:[84,80], soon:true, short:'Health Access WebGIS', title:'Pringsewu Health Access WebGIS', line:'Who can actually reach a health facility?', org:'WebGIS project', yrs:'In progress', coord:'5.36°S, 104.97°E', tags:['STILL SURVEYING','WEBGIS'],
-    labels:['THE QUESTION','BEING DRAWN UP','STATUS'],
-    problem:'How well do health facilities, from puskesmas to hospitals, reach the villages around them?',
-    did:'An interactive map of health facilities against village population, measuring community reach.',
-    big:'Coming soon', bigTxt:true, sub:'still surveying', tools:['WebGIS','Spatial analysis'] },
+  { n:'06', pos:[84,80], short:'Health Access WebGIS', title:'Pringsewu Health Access WebGIS', line:'Who can actually reach a health facility?', org:'WebGIS project · Pringsewu', yrs:'2026', coord:'5.36°S, 104.97°E', tags:['WEBGIS','PUBLIC HEALTH'],
+    labels:['THE QUESTION','WHAT I DID','WHAT THE MAP SHOWS'],
+    problem:'How well do health facilities, from clinics and puskesmas up to hospitals, reach the 131 villages of Pringsewu, and where would a new referral facility help most?',
+    did:'Mapped 21 facilities against village population. Validated every facility point against official boundaries and fixed 4 that fell outside the regency, reconciled 131 village names across two government sources, then measured distance, facility workload and coverage, and modeled the best sites for a new referral facility.',
+    big:'Basic care is close; hospitals are not', bigTxt:true, sub:'90% of residents live within 5 km of a puskesmas, but all 5 general hospitals sit in one district and 1 in 5 residents live over 10 km from one. A facility near Waringinsari Barat would cut the average distance from 6.8 to 5.6 km.', tools:['Python','GeoPandas','Leaflet','Spatial analysis'],
+    link:['https://fahmiadiw.github.io/webgis-faskes-pringsewu/','Open the live map →'] },
 ];
 const PERSONAS = {
   ba:  { label:'Business Analyst', order:[3,4,0,1,2,5,'c'], feat:2, note:'Sorted for BA hiring: process redesign and the BA case study first.', memo:true, gis:false },
