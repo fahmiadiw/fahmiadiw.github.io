@@ -394,7 +394,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
   <span>Viewing as: <b id="vtLabel">Everything</b></span> ·
   <button id="vtChange" type="button" aria-expanded="false" aria-controls="vtMenu">change</button>
   <div id="vtMenu" class="vtmenu" hidden>
-    <button type="button" data-persona="ba">Business Analyst</button>
+    <button type="button" data-persona="ba">Health Data</button>
     <button type="button" data-persona="da">Data Analyst</button>
     <button type="button" data-persona="gis">GIS &amp; Geospatial</button>
     <button type="button" data-persona="all">Everything</button>
@@ -433,7 +433,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <p>Hiring for…?</p>
     </div>
     <div class="opts" role="group" aria-label="What are you hiring for?">
-      <button type="button" class="opt" data-persona="ba" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path A</span>Business Analyst<small>requirements · process · stakeholders</small></button>
+      <button type="button" class="opt" data-persona="ba" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path A</span>Health Data &amp; Systems<small>health records · surveys · facility access</small></button>
       <button type="button" class="opt" data-persona="da" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path B</span>Data Analyst<small>automation · analytics · cleaning</small></button>
       <button type="button" class="opt" data-persona="gis" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path C</span>GIS &amp; Geospatial<small>mapping · WebGIS · field data</small></button>
     </div>
@@ -519,7 +519,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
     <h3>The route so far.</h3>
     <p>Detours included. They're where the spatial edge comes from.</p>
     <div class="profile-fig" id="pfig">
-      <svg id="psvg" viewBox="0 -50 1400 430" preserveAspectRatio="none" role="img" aria-label="Career drawn as a hiking elevation profile, rising from 2017 to a summit flag labelled Next: Business Analyst">
+      <svg id="psvg" viewBox="0 -50 1400 430" preserveAspectRatio="none" role="img" aria-label="Career drawn as a hiking elevation profile, rising from 2017 to a summit flag labelled Next: Health and Spatial Data Analyst">
         <g class="pgrid"><line x1="0" x2="1400" y1="80" y2="80"/><line x1="0" x2="1400" y1="180" y2="180"/><line x1="0" x2="1400" y1="280" y2="280"/></g>
         <path id="pArea"/><path id="pRidge"/><path id="pTrail"/>
         <circle id="pWalker" r="3" fill="none" data-dot data-shape="dot"/>
@@ -532,7 +532,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <li><span class="nn">4</span><span class="yr">2023–2026</span><strong>Data Analyst</strong><span>Strategy Institute (remote, Canada)</span></li>
       <li><span class="nn">5</span><span class="yr">2024</span><strong>GIS Data Analyst</strong><span>Summit Institute (contract)</span></li>
       <li><span class="nn">6</span><span class="yr">2026</span><strong>Independent Project Lead</strong><span>Community Nutrition Program Facilities (Rp 500M build)</span></li>
-      <li class="summit"><span class="nn">⚑</span><span class="yr">NEXT</span><strong>Business Analyst</strong><span>Summit flag</span></li>
+      <li class="summit"><span class="nn">⚑</span><span class="yr">NEXT</span><strong>Health &amp; Spatial Data Analyst</strong><span>Health information systems · digital health</span></li>
     </ol>
   </div>
 </section>
@@ -548,7 +548,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
           <dl class="memo-meta">
             <dt>TO</dt><dd>Your team</dd>
             <dt>FROM</dt><dd>Fahmi Adi Wicaksono</dd>
-            <dt>RE</dt><dd>Why I'm moving into Business Analysis</dd>
+            <dt>RE</dt><dd>Why health and spatial data</dd>
           </dl>
         </div>
         <figure class="photo" id="photo">
@@ -558,23 +558,25 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
         </figure>
       </header>
       <hr>
-      <h2 id="memoh">Why I'm moving into Business Analysis</h2>
+      <h2 id="memoh">Why health and spatial data</h2>
       <p class="pull">For six years I've been the person between the data and the decision.</p>
-      <p class="memo-body">I clean it, analyze it, map it — but the most valuable moment is always when someone acts on it. That's where I want to work now: understanding the business problem first, then making sure the data, the process and the people line up to solve it.</p>
+      <p class="memo-body">I clean it, analyze it, map it — but the most valuable moment is always when someone acts on it. In health, that moment decides who gets reached and who doesn't. That's where I want to work now: with health information systems and digital health teams whose patient, facility and field data needs to become maps and decisions.</p>
 
-      <h3>What I bring to the BA seat</h3>
+      <h3>What I bring to your team</h3>
       <ul class="checks" id="checks">
-        <li>Requirements gathering</li>
-        <li>Stakeholder mapping</li>
+        <li>Health data cleaning &amp; validation (EMR, surveys)</li>
+        <li>Facility access &amp; coverage mapping</li>
+        <li>Dashboards for program and clinical KPIs</li>
+        <li>Requirements gathering with stakeholders</li>
         <li>Process modeling (BPMN)</li>
-        <li>Data-driven business cases</li>
-        <li>User stories &amp; acceptance criteria</li>
         <li>SOP &amp; documentation design</li>
       </ul>
 
       <details class="extra" id="memoExtra">
-        <summary>Appendix A · BA work I've already done, without the title</summary>
+        <summary>Appendix A · Health and spatial work so far</summary>
         <ul>
+          <li><b>Facility access analysis.</b> Mapped 21 facilities against 131 villages in Pringsewu: 90% of residents live within 5 km of a puskesmas, but 1 in 5 live over 10 km from a hospital. <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">Open the map</a>.</li>
+          <li><b>Public health mapping.</b> GIS dashboards of facility distribution, population density and disease patterns for a maternal health program in West Nusa Tenggara.</li>
           <li><b>Requirements before code.</b> Agreed default list criteria with marketing stakeholders before automating anything.</li>
           <li><b>Process redesign.</b> Turned a two-hour manual request into a one-step workflow, and a noisy job hunt into a human-in-the-loop pipeline.</li>
           <li><b>Decision support.</b> Built the dashboards hospital leadership used to track financial trends and clinical KPIs.</li>
@@ -705,7 +707,7 @@ const PROJECTS = [
     link:['https://fahmiadiw.github.io/webgis-faskes-pringsewu/','Open the live map →'] },
 ];
 const PERSONAS = {
-  ba:  { label:'Business Analyst', order:[3,4,0,1,2,5,'c'], feat:2, note:'Sorted for BA hiring: process redesign and the BA case study first.', memo:true, gis:false },
+  ba:  { label:'Health Data',      order:[5,2,1,0,'c',3,4], feat:3, note:'Sorted for health data hiring: facility access, public health mapping and hospital analytics first.', memo:true, gis:true },
   da:  { label:'Data Analyst',     order:[0,1,'c',2,3,5,4], feat:3, note:'Sorted for data hiring: automation, hospital analytics and cleaning first.', memo:false, gis:false },
   gis: { label:'GIS & Geospatial', order:[2,5,0,1,3,4,'c'], feat:2, note:'Sorted for geospatial hiring: GIS dashboards and WebGIS first.', memo:false, gis:true },
   all: { label:'Everything',       order:[0,1,2,3,4,5,'c'], feat:0, note:'Showing everything, in chronological order of impact.', memo:true, gis:false },
