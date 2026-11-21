@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Before the Dashboard: Catching Silent Errors in Field &amp; Routine Health Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1c1a;--ink2:#55524c;--mute:#8a867e;--line:#e4e1da;--paper:#fcfbf8;--card:#fff;--accent:#8f1d17;--blue:#2f5d8a}
+*{box-sizing:border-box}body{margin:0;background:#f1efe9;color:var(--ink);font:14px/1.5 "Public Sans",system-ui,sans-serif}
+.page{max-width:1180px;margin:24px auto;background:var(--paper);padding:36px 40px 28px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font:700 31px/1.12 "Archivo",sans-serif;margin:6px 0 4px;max-width:820px}
+.sub{color:var(--ink2);margin:0 0 20px}
+.top{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:14px;margin-bottom:22px}
+.q{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--ink2);font-size:13.5px}
+.q b{color:var(--ink);display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.kpi{padding:2px 0 0}
+.kpi .v{font:700 34px/1 "Archivo";letter-spacing:-.02em}.kpi .l{font-size:12px;color:var(--ink2);margin-top:10px;padding-top:8px;border-top:2px solid var(--ink)}.kpi.bad .l{border-top-color:var(--accent)}
+.kpi.bad .v{color:var(--accent)}
+.main{display:grid;grid-template-columns:400px 1fr;gap:28px}
+.mapbox{position:relative}.mapbox svg{width:100%;height:auto;display:block}
+.villages path{stroke:#fff;stroke-width:.5}.villages path:hover{stroke:#1d1c1a;stroke-width:1.2}
+.kecb path{fill:none;stroke:#1d1c1a;stroke-width:1.1;stroke-dasharray:4 3;opacity:.75;pointer-events:none}.cb{fill:none;stroke:#3b3935;stroke-width:1.1;stroke-linejoin:round;pointer-events:none}.cb.hot{stroke:#1d1c1a;stroke-width:2.4}
+.rs{fill:#1d1c1a;stroke:#fff;stroke-width:1.5}.pkm{fill:#fff;stroke:#1d1c1a;stroke-width:1.6}.pkm.ri{fill:var(--blue);stroke:#fff}
+.badge{fill:#1d1c1a;stroke:#fff;stroke-width:1.5}.lbl .num{fill:#fff;font:700 13px "Public Sans"}.lbl .nm{fill:#1d1c1a;font:600 15px "Public Sans";paint-order:stroke;stroke:#fcfbf8;stroke-width:4px;stroke-linejoin:round}.kec text{font:600 10.5px "Public Sans";letter-spacing:.08em;fill:#3b3935;paint-order:stroke;stroke:rgba(255,255,255,.85);stroke-width:3px;stroke-linejoin:round;pointer-events:none}.lead{stroke:#1d1c1a;stroke-width:1.3}.tipdot{fill:#1d1c1a}.lbl{pointer-events:none}
+.legend{font-size:11.5px;color:var(--ink2);margin-top:10px;display:grid;gap:6px}
+.sw{display:flex;gap:2px;align-items:center}.sw span{flex:1;height:10px}.ticks{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mute)}
+.sym{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}.sym i{display:inline-block;vertical-align:-2px;margin-right:5px}
+#tip{position:fixed;pointer-events:none;background:#1d1c1a;color:#fff;font-size:12px;padding:6px 9px;border-radius:5px;max-width:280px;opacity:0;transition:opacity .1s;z-index:9}
+h2{font:700 12px/1 "Archivo";letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin:0 0 10px}
+.find{display:grid;gap:12px;margin-bottom:22px}
+.find div{position:relative;padding-left:34px}.find div::before{counter-increment:f;content:counter(f);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center}
+.find b.h{display:block;font-size:14.5px}.find p{margin:2px 0 0;color:var(--ink2);font-size:13.2px}.find em{font-style:normal;font-weight:600;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);font-weight:600;text-align:right;padding:0 6px 6px;border-bottom:1px solid var(--ink);vertical-align:bottom}
+th:nth-child(2){text-align:left}td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+td small{display:block;color:var(--mute);font-size:11px}td small b{color:var(--accent);font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}td.rk{color:var(--mute);width:18px}
+tr.hot td{background:#fbf3ea}tr.hot td.rk{color:var(--ink);font-weight:700}
+.bar{display:block;height:4px;background:#eeebe4;border-radius:2px;margin-top:3px;margin-left:auto;width:70px}.bar i{display:block;height:100%;border-radius:2px}
+.b1{background:#d9542a}.b2{background:#8f1d17}.b3{background:var(--blue)}
+.mv{font-size:12px}.up{color:var(--accent);font-weight:700}.dn{color:var(--blue);font-weight:700}.eq{color:var(--mute)}
+.tnote{font-size:11px;color:var(--mute);margin-top:6px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.hook{font:400 14.5px/1.55 "Archivo",sans-serif}.hook small{display:block;font:12px "Public Sans";color:var(--mute);margin-top:8px}
+.meth{font-size:11.5px;color:var(--ink2)}.meth b{color:var(--ink)}
+a{color:var(--blue)}
+@media(max-width:900px){.page{padding:22px 18px;margin:0}.top{grid-template-columns:1fr 1fr}.q{grid-column:1/-1}.main,.foot{grid-template-columns:1fr}h1{font-size:24px}table{font-size:12px}.bar{width:48px}}
+@media print{body{background:#fff}.page{box-shadow:none;margin:0;padding:18px}}
+
+.main{grid-template-columns:1.15fr 1fr}
+.ledger td{vertical-align:top;padding:7px 6px}.ledger td:first-child{width:28%}
+.ledger .grp td{background:#f1efe9;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;padding:5px 6px}
+.ledger b{font-weight:600}.ledger .n{text-align:right}
+.rule{font:500 10.5px "JetBrains Mono",monospace;background:#eef2f6;color:var(--blue);padding:1px 5px;border-radius:3px;white-space:nowrap}
+.bad{color:var(--accent)}.ok{color:#2c6b46;font-weight:600}
+th.l,td.l{text-align:left}
+.cmp td{padding:6px}.cmp td.n{font-size:13px}.cmp .raw{color:var(--accent)}.cmp .cl{font-weight:600}
+.slope svg{width:100%;height:auto;display:block;margin-top:6px}.slope .sh{font:600 10.5px "Public Sans";letter-spacing:.08em;text-transform:uppercase;fill:var(--mute)}
+.slope .ax{stroke:var(--line);stroke-width:1}.slope .lb{font:12px "Public Sans";fill:var(--ink2)}.slope .hl{font-weight:700}
+.slope g:hover line{stroke-width:3.5}
+.key{font-size:11.5px;color:var(--ink2);display:flex;gap:14px;flex-wrap:wrap;margin-top:4px}.key i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:5px}
+.find{margin-top:22px}
+.findrow{counter-reset:f;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.findrow .find{margin:0;display:contents}
+@media(max-width:900px){.findrow{counter-reset:f;grid-template-columns:1fr}}
+.back{display:flex;justify-content:space-between;font:600 12px "Public Sans",system-ui,sans-serif;margin:-14px 0 18px}.back a{color:var(--blue);text-decoration:none}.back a:hover{text-decoration:underline}
+</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B1426'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FFB547'/%3E%3C/svg%3E">
+</head><body>
+<div class="page">
+<nav class="back"><a href="./">← All diagnostics</a><a href="../">fahmiadiw.github.io</a></nav>
+
+<div class="eyebrow">Data quality &amp; HIS readiness · Pringsewu Regency, Lampung, Indonesia</div>
+<h1>Before the Dashboard: Catching Silent Errors in Field &amp; Routine Health Data</h1>
+<p class="sub">2 source files · 302 raw records · 131 villages · 13 puskesmas · the same data behind the access diagnostic</p>
+
+<div class="top">
+<div class="q"><b>Operational question</b>Indicator reports are only as good as the merge underneath. If a village population table and a facility list are joined without checks, how far off are the headline numbers and the priority list, and would anyone notice?</div>
+<div class="kpi bad"><div class="v">79 / 131</div><div class="l">villages carry the wrong population after a standard lookup merge</div></div>
+<div class="kpi bad"><div class="v">+31%</div><div class="l">total population overstated (593,507 vs 451,666), with no error message</div></div>
+<div class="kpi bad"><div class="v">32</div><div class="l">villages (98,421 people) assigned to the wrong puskesmas because of 4 bad coordinates</div></div>
+</div>
+
+<div class="main">
+<div>
+<h2>Error ledger: what the raw files contained</h2>
+<table class="ledger">
+<thead><tr><th class="l">Issue in raw data</th><th>Records</th><th class="l">What it does silently</th><th class="l">Rule → after</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="4">Village population · Disdukcapil via PRIMA portal · 280 rows</td></tr>
+<tr><td><b>Sub-district subtotals mixed into village rows</b></td><td class="n">18 rows</td><td>5 share a village name, so a lookup returns the subtotal: Ambarawa village gets <span class="bad">41,175</span> instead of 7,371</td><td><span class="rule">R1</span> keep village-level codes only → <span class="ok">0 left</span></td></tr>
+<tr><td><b>Two unlabeled reporting periods</b></td><td class="n">262 rows<br>for 131</td><td>Row order is mixed in 66 villages, so "keep first" blends old and new figures</td><td><span class="rule">R2</span> one row per village per period, <span class="rule">R3</span> reconcile to sub-district totals → newer period matches within 80 people (0.02%)</td></tr>
+<tr><td><b>Village names differ from the boundary file</b></td><td class="n">23 villages</td><td>Exact match fails (13 spacing, 10 spelling, e.g. Fajaresuk = Pajar Esuk), so <span class="bad">78,840 people</span> drop to zero</td><td><span class="rule">R4</span> normalise text + reviewed alias table → <span class="ok">0 unmatched</span></td></tr>
+<tr><td><b>Same name in two sub-districts; truncated codes</b></td><td class="n">2 villages<br>21 codes</td><td>Both Sidodadi villages get 3,684; codes can't serve as a key (21 codes for 131 villages)</td><td><span class="rule">R5</span> join on sub-district + name, carry official region code → <span class="ok">resolved</span></td></tr>
+<tr class="grp"><td colspan="4">Facility list · manual collection · 22 rows</td></tr>
+<tr><td><b>Coordinates outside the regency</b></td><td class="n">4 of 13<br>puskesmas</td><td>Puskesmas Adiluwih ends up with <span class="bad">no villages</span>; 32 villages switch catchment</td><td><span class="rule">R6</span> point-in-polygon vs stated sub-district → <span class="ok">0 outside</span></td></tr>
+<tr><td><b>Template row left in</b></td><td class="n">1 row</td><td>"Klinik Utama Contoh" counted as a real facility (22 instead of 21)</td><td><span class="rule">R7</span> placeholder pattern check → <span class="ok">removed</span></td></tr>
+<tr><td><b>Estimates typed into numeric fields</b></td><td class="n">24 cells</td><td>Values like "~150" parse as text or blank, so capacity figures break</td><td><span class="rule">R8</span> numeric type check + estimate flag → <span class="ok">flagged</span></td></tr>
+</tbody></table>
+<div class="tnote">Also flagged for the data owner, not changed: one village (Pujodadi) shows identical figures in both periods.</div>
+</div>
+
+<div>
+<h2>What the dashboard would have said</h2>
+<table class="cmp">
+<thead><tr><th class="l">Headline figure</th><th>Raw merge</th><th>Cleaned</th></tr></thead>
+<tbody>
+<tr><td>Total population</td><td class="n raw">593,507</td><td class="n cl">451,666</td></tr>
+<tr><td>Residents &gt;5 km from a puskesmas</td><td class="n raw">7.4%</td><td class="n cl">10.1%</td></tr>
+<tr><td>Residents &gt;10 km from a general hospital</td><td class="n raw">17.1%</td><td class="n cl">20.3%</td></tr>
+<tr><td>Bandung Baru, people per doctor</td><td class="n raw">15,495</td><td class="n cl">44,522</td></tr>
+<tr><td>Busiest puskesmas</td><td class="n raw">Fajar Mulia</td><td class="n cl">Bandung Baru</td></tr>
+<tr><td>Puskesmas present in catchment model</td><td class="n raw">12 of 13</td><td class="n cl">13 of 13</td></tr>
+</tbody></table>
+<div class="slope">
+<h2 style="margin-top:20px">Priority rank by puskesmas catchment</h2>
+<svg viewBox="0 0 430 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slope chart of puskesmas priority rank, raw data versus cleaned data"><text x="120" y="14" text-anchor="middle" class="sh">Raw merge</text><text x="300" y="14" text-anchor="middle" class="sh">Cleaned</text><line x1="120" y1="22" x2="120" y2="292" class="ax"/><line x1="300" y1="22" x2="300" y2="292" class="ax"/><g data-t="Bandung Baru: rank 1 raw → 1 cleaned · 44,522 people/doctor cleaned"><line x1="120" y1="34.0" x2="300" y2="34.0" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="34.0" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="34.0" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="38.0" text-anchor="end" class="lb">1 Bandung Baru</text></g><text x="308" y="38.0" class="lb">1 Bandung Baru</text><g data-t="Fajar Mulia: rank 2 raw → 2 cleaned · 30,209 people/doctor cleaned"><line x1="120" y1="54.83333333333333" x2="300" y2="54.83333333333333" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="54.83333333333333" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="54.83333333333333" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="58.83333333333333" text-anchor="end" class="lb">2 Fajar Mulia</text></g><text x="308" y="58.83333333333333" class="lb">2 Fajar Mulia</text><g data-t="Pardasuka: rank 3 raw → 3 cleaned · 21,615 people/doctor cleaned"><line x1="120" y1="75.66666666666666" x2="300" y2="75.66666666666666" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="75.66666666666666" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="75.66666666666666" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="79.66666666666666" text-anchor="end" class="lb">3 Pardasuka</text></g><text x="308" y="79.66666666666666" class="lb">3 Pardasuka</text><g data-t="Banyumas: rank 4 raw → 5 cleaned · 14,970 people/doctor cleaned"><line x1="120" y1="96.5" x2="300" y2="117.33333333333333" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="96.5" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="117.33333333333333" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="100.5" text-anchor="end" class="lb">4 Banyumas</text></g><text x="308" y="121.33333333333333" class="lb">5 Banyumas</text><g data-t="Bumiratu: rank 6 raw → 7 cleaned · 14,741 people/doctor cleaned"><line x1="120" y1="138.16666666666666" x2="300" y2="159.0" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="138.16666666666666" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="159.0" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="142.16666666666666" text-anchor="end" class="lb">6 Bumiratu</text></g><text x="308" y="163.0" class="lb">7 Bumiratu</text><g data-t="Gadingrejo: rank 7 raw → 8 cleaned · 16,981 people/doctor cleaned"><line x1="120" y1="159.0" x2="300" y2="179.83333333333331" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="159.0" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="179.83333333333331" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="163.0" text-anchor="end" class="lb">7 Gadingrejo</text></g><text x="308" y="183.83333333333331" class="lb">8 Gadingrejo</text><g data-t="Pringsewu: rank 8 raw → 9 cleaned · 26,424 people/doctor cleaned"><line x1="120" y1="179.83333333333331" x2="300" y2="200.66666666666666" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="179.83333333333331" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="200.66666666666666" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="183.83333333333331" text-anchor="end" class="lb">8 Pringsewu</text></g><text x="308" y="204.66666666666666" class="lb">9 Pringsewu</text><g data-t="Pagelaran: rank 12 raw → 10 cleaned · 13,711 people/doctor cleaned"><line x1="120" y1="263.16666666666663" x2="300" y2="221.5" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="263.16666666666663" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="221.5" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="267.16666666666663" text-anchor="end" class="lb">12 Pagelaran</text></g><text x="308" y="225.5" class="lb">10 Pagelaran</text><g data-t="Ambarawa: rank 10 raw → 11 cleaned · 11,381 people/doctor cleaned"><line x1="120" y1="221.5" x2="300" y2="242.33333333333331" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="221.5" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="242.33333333333331" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="225.5" text-anchor="end" class="lb">10 Ambarawa</text></g><text x="308" y="246.33333333333331" class="lb">11 Ambarawa</text><g data-t="Sukoharjo: rank 11 raw → 13 cleaned · 6,438 people/doctor cleaned"><line x1="120" y1="242.33333333333331" x2="300" y2="284.0" stroke="#b9b4aa" stroke-width="1.3"/><circle cx="120" cy="242.33333333333331" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="284.0" r="3" fill="#b9b4aa" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="246.33333333333331" text-anchor="end" class="lb">11 Sukoharjo</text></g><text x="308" y="288.0" class="lb">13 Sukoharjo</text><g data-t="Rejosari: rank 9 raw → 4 cleaned · 43,830 people/doctor cleaned"><line x1="120" y1="200.66666666666666" x2="300" y2="96.5" stroke="#8f1d17" stroke-width="2.4"/><circle cx="120" cy="200.66666666666666" r="4" fill="#8f1d17" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="96.5" r="4" fill="#8f1d17" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="204.66666666666666" text-anchor="end" class="lb hl" fill="#8f1d17">9 Rejosari</text></g><text x="308" y="100.5" class="lb hl" fill="#8f1d17">4 Rejosari</text><g data-t="Adiluwih: rank — (missing) raw → 6 cleaned · 6,493 people/doctor cleaned"><line x1="120" y1="284.0" x2="300" y2="138.16666666666666" stroke="#8f1d17" stroke-width="2.4" stroke-dasharray="4 3"/><circle cx="120" cy="284.0" r="4" fill="#fcfbf8" stroke="#8f1d17" stroke-width="1.5"/><text x="112" y="288.0" text-anchor="end" class="lb hl" fill="#8f1d17">– Adiluwih (missing)</text><circle cx="300" cy="138.16666666666666" r="4" fill="#8f1d17"/></g><text x="308" y="142.16666666666666" class="lb hl" fill="#8f1d17">6 Adiluwih</text><g data-t="Wates: rank 5 raw → 12 cleaned · 9,539 people/doctor cleaned"><line x1="120" y1="117.33333333333333" x2="300" y2="263.16666666666663" stroke="#2f5d8a" stroke-width="2.4"/><circle cx="120" cy="117.33333333333333" r="4" fill="#2f5d8a" stroke="#fcfbf8" stroke-width="1.5"/><circle cx="300" cy="263.16666666666663" r="4" fill="#2f5d8a" stroke="#fcfbf8" stroke-width="1.5"/><text x="112" y="121.33333333333333" text-anchor="end" class="lb hl" fill="#2f5d8a">5 Wates</text></g><text x="308" y="267.16666666666663" class="lb hl" fill="#2f5d8a">12 Wates</text></svg>
+<div class="key"><span><i style="background:#8f1d17"></i>Hidden by the errors</span><span><i style="background:#2f5d8a"></i>Falsely flagged</span><span><i style="background:#b9b4aa"></i>Other catchments</span></div>
+</div>
+</div>
+</div>
+
+<div class="findrow"><div class="find">
+<div><b class="h">Four error types do almost all the damage.</b><p>Name mismatches (23 villages), subtotal rows (5), mixed periods (66) and a duplicate name (2) leave <em>79 of 131 villages</em> with a wrong population, and <em>4 of 13 puskesmas</em> sit outside the regency.</p></div>
+<div><b class="h">The errors change the decision, not just the numbers.</b><p>The raw merge overstates population by 31% yet makes access look <em>better</em> (7.4% vs 10.1% beyond 5 km). It understates Bandung Baru's load nearly 3×, drops <em>Rejosari from #4 to #9</em>, pushes Wates up to #5 and deletes Puskesmas Adiluwih from the model.</p></div>
+<div><b class="h">Eight automated rules catch all of it, every cycle.</b><p>Rules R1–R8 run in Python on every data refresh. After cleaning: <em>0 unmatched villages, 0 facilities outside their boundary</em>, and village totals reconcile to official sub-district totals within 0.02%.</p></div>
+</div></div>
+
+<div class="foot">
+<div class="hook">I've cleaned hospital EMR and NGO field survey data by hand, and now build that work as rule-based pipelines in Python and SQL, so the same checks run every reporting cycle before anything reaches a dashboard. Here is the <a href="data-quality-validation.zip">reproducible script and rule set</a>; happy to walk through it in 15 minutes.
+<small>Fahmi Adi Wicaksono · Health &amp; Spatial Data Analyst · <a href="https://fahmiadiw.github.io">fahmiadiw.github.io</a> · interactive map: <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/">webgis-faskes-pringsewu</a></small></div>
+<div class="meth"><b>Raw merge.</b> What a spreadsheet lookup produces: first exact name match per village (VLOOKUP-style) and facility coordinates used as received.<br>
+<b>Cleaned.</b> Rules R1–R8 applied; newer period chosen because village figures reproduce the larger set of official sub-district totals.<br>
+<b>Metrics.</b> Same method as the access diagnostic: straight-line distance (UTM 48S), nearest-puskesmas catchments, priority = equal-weight index of distance gaps and people per doctor. Boundaries: BPS 2020 via HDX.</div>
+</div>
+</div>
+<div id="tip"></div>
+<script>
+const tip=document.getElementById('tip');
+document.querySelectorAll('[data-t]').forEach(el=>{
+ el.addEventListener('mousemove',e=>{tip.textContent=el.dataset.t;tip.style.opacity=1;
+  const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8);tip.style.left=x+'px';tip.style.top=(e.clientY+14)+'px'});
+ el.addEventListener('mouseleave',()=>tip.style.opacity=0);
+});
+</script>
+<script data-goatcounter="https://fahmiadiw.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body></html>

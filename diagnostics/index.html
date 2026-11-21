@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Health Data Diagnostics — Fahmi Adi Wicaksono</title>
+<meta name="description" content="Four one-page health data diagnostics on Lampung, Indonesia: spatial access, data quality, district equity and maternal health program monitoring.">
+<meta property="og:title" content="Health Data Diagnostics — Fahmi Adi Wicaksono">
+<meta property="og:description" content="Four one-page diagnostics on health access, data quality, district equity and antenatal care in Lampung, Indonesia.">
+<meta property="og:url" content="https://fahmiadiw.github.io/diagnostics/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B1426'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FFB547'/%3E%3C/svg%3E">
+<style>
+:root{--ink:#1d1c1a;--ink2:#55524c;--mute:#8a867e;--line:#e4e1da;--paper:#fcfbf8;--accent:#8f1d17;--blue:#2f5d8a}
+*{box-sizing:border-box}body{margin:0;background:#f1efe9;color:var(--ink);font:15px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 28px 60px}
+.top a{color:var(--blue);text-decoration:none;font-weight:600;font-size:13px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:26px}
+h1{font:700 38px/1.1 "Archivo",sans-serif;margin:8px 0 10px;max-width:760px;letter-spacing:-.01em}
+.lede{color:var(--ink2);max-width:720px;margin:0 0 30px;font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--paper);padding:24px 26px 22px;text-decoration:none;color:inherit;box-shadow:0 1px 3px rgba(0,0,0,.07);display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.09)}
+.tag{font:600 11px "Public Sans";letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}.tag span{color:var(--accent);margin-right:8px}
+.card h2{font:700 22px/1.2 "Archivo";margin:8px 0 6px}.card p{color:var(--ink2);font-size:14px;margin:0 0 16px}
+.big{font:700 32px/1 "Archivo";color:var(--accent);letter-spacing:-.02em}
+.bl{font-size:13px;color:var(--ink2);border-top:2px solid var(--accent);padding-top:8px;margin-top:10px;flex:1}
+.go{font:600 13px "Public Sans";color:var(--blue);margin-top:16px}
+.extra{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.mini{background:transparent;border:1.5px solid var(--line);padding:18px 22px;text-decoration:none;color:inherit}
+.mini:hover{border-color:var(--ink)}.mini b{display:block;font:700 16px "Archivo";margin:4px 0}.mini span{font-size:13.5px;color:var(--ink2)}
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid #d9d5cc;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink2)}
+.foot a{color:var(--blue)}
+@media(max-width:800px){.grid,.extra{grid-template-columns:1fr}h1{font-size:30px}}
+</style></head><body>
+<div class="wrap">
+<div class="top"><a href="../">← fahmiadiw.github.io</a></div>
+<div class="eyebrow">Health data diagnostics · Lampung, Indonesia</div>
+<h1>Four one-page diagnostics where the headline number hides the real story</h1>
+<p class="lede">Each one starts from an operational question, uses public or routine health data, and ends with three findings a program team could act on. All are built as reproducible Python and GIS workflows.</p>
+<div class="grid"><a class="card" href="catch-area.html"><div class="tag"><span>01</span>Spatial access</div><h2>Where Facility Counts Hide Access Gaps</h2><p>A spatial catch-area diagnostic of 13 puskesmas catchments and 131 villages in Pringsewu.</p><div class="big">1 in 5</div><div class="bl">residents live more than 10 km from a general hospital, even though 90% are within 5 km of a puskesmas.</div><div class="go">Open the diagnostic →</div></a><a class="card" href="data-quality.html"><div class="tag"><span>02</span>Data quality</div><h2>Before the Dashboard</h2><p>Catching silent errors in field and routine health data before they reach a dashboard.</p><div class="big">+31%</div><div class="bl">population overstated by an unchecked merge, which also hides a busy puskesmas from the priority list.</div><div class="go">Open the diagnostic →</div></a><a class="card" href="lampung-equity.html"><div class="tag"><span>03</span>District equity</div><h2>Where Province Averages Hide Health Gaps</h2><p>TB, dengue and frontline health workforce across Lampung’s 15 districts.</p><div class="big">0.80 → 0.17</div><div class="bl">correlation between TB detection and staffing once the two cities are removed.</div><div class="go">Open the diagnostic →</div></a><a class="card" href="anc-cascade.html"><div class="tag"><span>04</span>Program monitoring</div><h2>Where Mothers Drop Out</h2><p>An antenatal care cascade for Lampung, from first visit to the six-visit standard.</p><div class="big">93.8% → 56.7%</div><div class="bl">coverage on the old four-visit yardstick versus the current six-visit standard.</div><div class="go">Open the diagnostic →</div></a></div>
+<div class="extra">
+<a class="mini" href="postnatal-data-note.html"><div class="tag"><span>Note</span>Companion to 04</div><b>Can Lampung’s Postnatal Numbers Be Trusted?</b><span>A routine-data consistency check: 7 of 15 districts report zero or near-zero postnatal drop-out, plus the validation rules that would catch it.</span></a>
+<a class="mini" href="data-quality-validation.zip"><div class="tag"><span>Code</span>Companion to 02</div><b>validate.py: eight data checks (ZIP)</b><span>The R1–R8 rule set behind "Before the Dashboard", with raw inputs and a README. Runs end to end.</span></a>
+</div>
+<div class="foot"><span>Fahmi Adi Wicaksono · Health &amp; Spatial Data Analyst</span><span><a href="../#contact">Get in touch</a> · <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/">Interactive WebGIS</a> · <a href="https://linkedin.com/in/fahmiadiw">LinkedIn</a></span></div>
+</div>
+<script data-goatcounter="https://fahmiadiw.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body></html>
