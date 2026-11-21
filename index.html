@@ -293,6 +293,7 @@ details.extra ul{margin:12px 0 2px;padding-left:20px;display:grid;gap:6px;font-s
 .links{list-style:none;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:34px;font-size:15px}
 .links a{text-underline-offset:4px}
 .links small{font:11px var(--mono);opacity:.8}
+.avail{max-width:640px;margin:34px auto 0;text-align:center;font-size:1.02rem;line-height:1.55;color:#e6edf7}
 footer{margin-top:90px;border-top:1.3px solid rgba(255,255,255,.5);padding:20px 0 84px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;font:500 11px var(--mono);letter-spacing:.08em;color:#dfe8ff}
 
 /* ---------- field report dialog ---------- */
@@ -377,7 +378,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
 <div id="dot" aria-hidden="true"></div>
 
 <header class="hud">
-  <span>F.A. Wicaksono · Field survey 2026</span>
+  <span>F.A. Wicaksono · Health &amp; Spatial Data Analyst · GMT+7</span>
   <span class="r"><span class="readout" id="readout" aria-hidden="true">5.3600°S 104.9700°E</span><a href="#contact">Contact</a></span>
 </header>
 
@@ -394,9 +395,9 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
   <span>Viewing as: <b id="vtLabel">Everything</b></span> ·
   <button id="vtChange" type="button" aria-expanded="false" aria-controls="vtMenu">change</button>
   <div id="vtMenu" class="vtmenu" hidden>
-    <button type="button" data-persona="ba">Health Data</button>
-    <button type="button" data-persona="da">Data Analyst</button>
-    <button type="button" data-persona="gis">GIS &amp; Geospatial</button>
+    <button type="button" data-persona="gis">Geospatial &amp; GIS</button>
+    <button type="button" data-persona="ba">Health Data &amp; NGO</button>
+    <button type="button" data-persona="da">Remote BI &amp; Operations</button>
     <button type="button" data-persona="all">Everything</button>
   </div>
 </div>
@@ -407,8 +408,8 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
   <i class="tick a" aria-hidden="true"></i><i class="tick b" aria-hidden="true"></i><i class="tick c" aria-hidden="true"></i><i class="tick d" aria-hidden="true"></i>
   <div class="hero-copy">
     <h1 id="name">Fahmi Adi Wicaksono</h1>
-    <p class="coords">5.36°S, 104.97°E · Pringsewu, Indonesia</p>
-    <p class="role"><em>Health &amp; Spatial Data Analyst</em> · Turning hospital, NGO and field data into maps and decisions</p>
+    <p class="coords">5.36°S, 104.97°E · Pringsewu, Indonesia (GMT+7)</p>
+    <p class="role"><em>Health &amp; Spatial Data Analyst</em> · 6+ years turning messy field, clinical and business data into maps, dashboards and decisions</p>
   </div>
   <div class="origin">
     <i class="anchor" data-dot data-shape="pulse"></i>
@@ -423,7 +424,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
     <svg class="conn" id="gateSvg" aria-hidden="true"></svg>
     <p class="eyebrow">02 · Decision gateway</p>
     <h2 id="dq">Who's visiting?</h2>
-    <p class="gate-sub">Pick a lane. The rest of the page re-routes so the most relevant work comes first.</p>
+    <p class="gate-sub">Pick your team's focus. The projects and stack below re-order to show the most relevant proof first.</p>
     <div class="gateway">
       <svg viewBox="0 0 220 220" aria-hidden="true">
         <path class="draw" d="M110 7 L214 109 L112 213 L7 111 Z"/>
@@ -433,9 +434,9 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <p>Hiring for…?</p>
     </div>
     <div class="opts" role="group" aria-label="What are you hiring for?">
-      <button type="button" class="opt" data-persona="ba" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path A</span>Health Data &amp; Systems<small>health records · surveys · facility access</small></button>
-      <button type="button" class="opt" data-persona="da" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path B</span>Data Analyst<small>automation · analytics · cleaning</small></button>
-      <button type="button" class="opt" data-persona="gis" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path C</span>GIS &amp; Geospatial<small>mapping · WebGIS · field data</small></button>
+      <button type="button" class="opt" data-persona="gis" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path A</span>Geospatial &amp; GIS Analytics<small>WebGIS · PostGIS · field survey</small></button>
+      <button type="button" class="opt" data-persona="ba" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path B</span>Health Data &amp; NGO Programs<small>EMR · surveys · public health</small></button>
+      <button type="button" class="opt" data-persona="da" aria-pressed="false"><i class="port" data-dot data-off></i><span class="k mono">Path C</span>Remote BI &amp; Operations<small>automation · dashboards · process</small></button>
     </div>
     <button type="button" class="linkbtn" data-persona="all" aria-pressed="false">Show me everything</button>
     <p class="routed mono" id="routed" aria-live="polite"></p>
@@ -461,9 +462,9 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       </div>
       <div class="caps">
         <button type="button" class="sheet-toggle" id="sheetToggle" aria-pressed="false">Show the raw version</button>
-        <p class="cap" data-at="2"><b>FIELD DATA</b>Cleaned and validated survey and Electronic Medical Record (EMR) data for public-health field teams.</p>
-        <p class="cap" data-at="5"><b>MARKETING DATA</b>Owned end-to-end data cleaning for marketing analytics at a Canadian strategy consultancy.</p>
-        <p class="cap lnk" data-at="8"><a href="https://github.com/fahmiadiw/survey-data-cleaner" target="_blank" rel="noopener">See the cleaner on GitHub →</a></p>
+        <p class="cap" data-at="2"><b>FIELD &amp; CLINICAL DATA</b>Cleaned and validated public-health field surveys and Electronic Medical Record (EMR) datasets across hospital and NGO programs, then packaged the routine checks into a reusable Python cleaner.</p>
+        <p class="cap" data-at="5"><b>REMOTE MARKETING &amp; CRM DATA</b>Owned data hygiene, deduplication and segmentation remotely for Strategy Institute (Toronto) for nearly three years, across event campaigns targeting C-level, VP, director and manager audiences.</p>
+        <p class="cap lnk" data-at="8"><a href="https://github.com/fahmiadiw/survey-data-cleaner" target="_blank" rel="noopener">See the Python cleaner on GitHub →</a></p>
       </div>
     </div>
   </div>
@@ -507,9 +508,9 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
     <details class="extra" id="gisExtra">
       <summary>Field notes for geospatial readers</summary>
       <ul>
-        <li>Geomatics engineer by training. Started in the field in 2017 as a GIS Field Analyst on PALAR land registration with Meridia &amp; BPN.</li>
-        <li>Built GIS dashboards of healthcare facility distribution, population density and disease patterns for public-health teams in West Nusa Tenggara.</li>
-        <li>Stack: ArcGIS · QGIS · PostGIS · Python. Latest: a <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">public WebGIS of health access in Pringsewu</a>.</li>
+        <li><b>Geomatics Engineer (S.T.) by training.</b> Started in the field in 2017, running GNSS and terrestrial surveys on the PALAR land registration project with Meridia &amp; Indonesia's National Land Agency (BPN).</li>
+        <li><b>Public health spatial analytics.</b> Built interactive GIS dashboards of healthcare facility coverage, population density and maternal health patterns for field teams in West Nusa Tenggara.</li>
+        <li><b>Spatial stack:</b> PostGIS · Python (Pandas) · SQL · QGIS · ArcGIS · Power BI. Latest: an <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">interactive WebGIS of health access across 131 villages in Pringsewu →</a></li>
       </ul>
     </details>
   </div>
@@ -528,11 +529,11 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
     <ol class="peaks" id="peaks">
       <li><span class="nn">1</span><span class="yr">2017</span><strong>GIS Field Analyst</strong><span>Meridia &amp; BPN (PALAR land registration)</span></li>
       <li><span class="nn">2</span><span class="yr">2018</span><strong>Assistant Project Financial Manager</strong><span>LIVITRA</span></li>
-      <li><span class="nn">3</span><span class="yr">2018–2022</span><strong>Data Analyst</strong><span>Kurnia Medical Center</span></li>
-      <li><span class="nn">4</span><span class="yr">2023–2026</span><strong>Data Analyst</strong><span>Strategy Institute (remote, Canada)</span></li>
-      <li><span class="nn">5</span><span class="yr">2024</span><strong>GIS Data Analyst</strong><span>Summit Institute (contract)</span></li>
-      <li><span class="nn">6</span><span class="yr">2026</span><strong>Independent Project Lead</strong><span>Community Nutrition Program Facilities (Rp 500M build)</span></li>
-      <li class="summit"><span class="nn">⚑</span><span class="yr">NEXT</span><strong>Health &amp; Spatial Data Analyst</strong><span>Health information systems · digital health</span></li>
+      <li><span class="nn">3</span><span class="yr">2018–2022</span><strong>Data Analyst (Healthcare)</strong><span>Kurnia Medical Center</span></li>
+      <li><span class="nn">4</span><span class="yr">2023–2026</span><strong>Data Analyst (Remote)</strong><span>Strategy Institute (Toronto, Canada)</span></li>
+      <li><span class="nn">5</span><span class="yr">2024</span><strong>GIS Data Analyst (Contract)</strong><span>Summit Institute for Development</span></li>
+      <li><span class="nn">6</span><span class="yr">2026</span><strong>Project &amp; Operations Lead</strong><span>Community Nutrition Program (2 sites · Rp 500M)</span></li>
+      <li class="summit"><span class="nn">⚑</span><span class="yr">NEXT</span><strong>Health &amp; Spatial Data Analyst</strong><span>Global remote teams · NGOs · digital health · spatial tech</span></li>
     </ol>
   </div>
 </section>
@@ -559,17 +560,15 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       </header>
       <hr>
       <h2 id="memoh">Why health and spatial data</h2>
-      <p class="pull">For six years I've been the person between the data and the decision.</p>
-      <p class="memo-body">I clean it, analyze it, map it — but the most valuable moment is always when someone acts on it. In health, that moment decides who gets reached and who doesn't. That's where I want to work now: with health information systems and digital health teams whose patient, facility and field data needs to become maps and decisions.</p>
+      <p class="pull">For over six years, including nearly three working remotely with a strategy team in Toronto, I've sat between raw data and the people who have to act on it.</p>
+      <p class="memo-body">I clean it, model it and map it, but the moment that matters is when a program director, clinician or operations lead makes a faster, clearer decision because of it. Whether it's finding the villages that live more than 10 km from a hospital or turning a two-hour manual reporting task into one step, I build analytics that teams actually use. That's where I want to work now: with health information systems, NGO and digital health teams.</p>
 
       <h3>What I bring to your team</h3>
       <ul class="checks" id="checks">
-        <li>Health data cleaning &amp; validation (EMR, surveys)</li>
-        <li>Facility access &amp; coverage mapping</li>
-        <li>Dashboards for program and clinical KPIs</li>
-        <li>Requirements gathering with stakeholders</li>
-        <li>Process modeling (BPMN)</li>
-        <li>SOP &amp; documentation design</li>
+        <li><b>Geospatial &amp; coverage analysis:</b>&nbsp;PostGIS queries, QGIS/ArcGIS mapping and WebGIS delivery</li>
+        <li><b>Health &amp; survey data pipelines:</b>&nbsp;EMR and field survey cleaning and validation (Python, SQL)</li>
+        <li><b>Program &amp; executive dashboards:</b>&nbsp;Power BI and automated reporting for clinical, NGO and commercial KPIs</li>
+        <li><b>Async remote execution:</b>&nbsp;nearly 3 years across time zones, with clear documentation, BPMN process models and SOPs</li>
       </ul>
 
       <p class="memo-body"><b>New:</b> <a href="diagnostics/">four one-page health data diagnostics</a> on Lampung, covering facility access, data quality, district equity and antenatal care.</p>
@@ -577,13 +576,13 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <details class="extra" id="memoExtra">
         <summary>Appendix A · Health and spatial work so far</summary>
         <ul>
-          <li><b>Facility access analysis.</b> Mapped 21 facilities against 131 villages in Pringsewu: 90% of residents live within 5 km of a puskesmas, but 1 in 5 live over 10 km from a hospital. <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">Open the map</a>.</li>
-          <li><b>One-page diagnostics.</b> Four short analyses of Lampung health data: facility access, a data-quality audit, TB and workforce equity, and an antenatal care cascade. <a href="diagnostics/">See all four</a>.</li>
-          <li><b>Public health mapping.</b> GIS dashboards of facility distribution, population density and disease patterns for a maternal health program in West Nusa Tenggara.</li>
-          <li><b>Requirements before code.</b> Agreed default list criteria with marketing stakeholders before automating anything.</li>
-          <li><b>Process redesign.</b> Turned a two-hour manual request into a one-step workflow, and a noisy job hunt into a human-in-the-loop pipeline.</li>
-          <li><b>Decision support.</b> Built the dashboards hospital leadership used to track financial trends and clinical KPIs.</li>
-          <li><b>A full BA case study.</b> Took my family's homestay through all 11 stages, from problem statement to traceability matrix. <a href="nirina-ba-case-study.pdf" target="_blank" rel="noopener">Read it (PDF)</a>.</li>
+          <li><b>Facility access analysis (Pringsewu WebGIS).</b> Mapped 21 health facilities against 131 villages: 90% of residents live within 5 km of a puskesmas, but 1 in 5 live over 10 km from a general hospital. <a href="https://fahmiadiw.github.io/webgis-faskes-pringsewu/" target="_blank" rel="noopener">Open the live map →</a></li>
+          <li><b>One-page diagnostics.</b> Four short analyses of Lampung health data: facility access, a data-quality audit, TB and workforce equity, and an antenatal care cascade. <a href="diagnostics/">See all four →</a></li>
+          <li><b>Maternal health GIS (West Nusa Tenggara).</b> Built spatial dashboards of facility distribution, population density and disease patterns for public health intervention planning.</li>
+          <li><b>Remote marketing &amp; CRM automation (Canada).</b> Agreed default targeting rules with stakeholders, then automated list-building for a Toronto consultancy, turning a two-hour manual request into one step.</li>
+          <li><b>Hospital clinical &amp; financial BI.</b> Built the dashboards leadership used to track financial trends and clinical KPIs across four years at a surgical hospital.</li>
+          <li><b>Operations &amp; inventory systems.</b> Designed SOPs and a supply-logistics database for procurement and inventory at a two-site community nutrition program, plus bookkeeping for a hospitality business.</li>
+          <li><b>End-to-end Business Analysis case study.</b> Documented all 11 BA stages, from problem statement to requirements traceability matrix, for a local hospitality operation. <a href="nirina-ba-case-study.pdf" target="_blank" rel="noopener">Read the case study (PDF) →</a></li>
         </ul>
       </details>
 
@@ -617,6 +616,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       </div>
     </div>
     <p class="counter">You took <b id="stepCount">6</b> steps. Most hiring processes take 12.</p>
+    <p class="avail">Available for remote roles and consulting contracts, and open to relocation for the right role. Based in Pringsewu, Indonesia (GMT+7), with live overlap across APAC, European mornings and North American evenings.</p>
     <ul class="links">
       <li><a href="mailto:fahmiadiw@gmail.com">Email</a> <small>fahmiadiw@gmail.com</small></li>
       <li><a href="https://linkedin.com/in/fahmiadiw" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -625,7 +625,7 @@ dialog::backdrop{background:rgba(5,10,22,.72)}
       <li><a href="cv.pdf" download>Download CV</a> <small>PDF</small></li>
     </ul>
     <footer>
-      <span>Open to remote, relocation &amp; FIFO · Based in Pringsewu, Indonesia (GMT+7)</span>
+      <span>Remote-first · Open to relocation for the right role · Pringsewu, Indonesia (GMT+7)</span>
       <span>© 2026 Fahmi Adi Wicaksono</span>
     </footer>
   </div>
@@ -710,9 +710,9 @@ const PROJECTS = [
     link:['https://fahmiadiw.github.io/webgis-faskes-pringsewu/','Open the live map →'] },
 ];
 const PERSONAS = {
-  ba:  { label:'Health Data',      order:[5,2,1,'d',0,'c',3,4], feat:3, note:'Sorted for health data hiring: facility access, public health mapping and hospital analytics first.', memo:true, gis:true },
-  da:  { label:'Data Analyst',     order:[0,1,'c','d',2,3,5,4], feat:3, note:'Sorted for data hiring: automation, hospital analytics and cleaning first.', memo:false, gis:false },
-  gis: { label:'GIS & Geospatial', order:[2,5,'d',0,1,3,4,'c'], feat:2, note:'Sorted for geospatial hiring: GIS dashboards and WebGIS first.', memo:false, gis:true },
+  ba:  { label:'Health Data & NGO',      order:[1,2,'d','c',5,0,3,4], feat:3, note:'Sorted for health data and NGO hiring: hospital analytics, public health mapping and health data diagnostics first.', memo:true, gis:true },
+  da:  { label:'Remote BI & Operations', order:[0,4,3,1,'c','d',2,5], feat:3, note:'Sorted for remote BI and operations hiring: workflow automation, the BA case study and process design first.', memo:true, gis:false },
+  gis: { label:'Geospatial & GIS',       order:[5,2,'d',1,0,'c',3,4], feat:2, note:'Sorted for geospatial hiring: the Pringsewu WebGIS and public health GIS first.', memo:false, gis:true },
   all: { label:'Everything',       order:[0,1,2,3,4,5,'d','c'], feat:0, note:'Showing everything, in chronological order of impact.', memo:true, gis:false },
 };
 
